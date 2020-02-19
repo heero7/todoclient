@@ -28,7 +28,7 @@ function TodoAddForm(props) {
                 variant="contained"
                 color="primary"
                 onClick={event => {
-                    props.onClick({ name: todoName, id: uuid() });
+                    props.onClick({ name: todoName, id: uuid(), done: false });
                     setTodoName('');
                     event.preventDefault();
                 }}

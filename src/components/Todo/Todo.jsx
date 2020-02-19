@@ -6,16 +6,29 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from '@material-ui/core/IconButton';
 
+function TodoText() {
+    return (
+        <ListItem></ListItem>
+    )
+}
 
 function Todo(props) {
-    const { id, name } = props.todo;
+    let { id, name, done } = props.todo;
+    const strikethrough = {
+        textDecorationLine: 'line-through'
+    };
     return (
         <ListItem>
-            <ListItemText>
-                {name}
-            </ListItemText>
+            {done ? 
+                <ListItem
+                    disableTypography
+                    style={strikethrough}>
+                        {name}
+                </ListItem> :
+                <ListItem>{name}</ListItem>
+            }
             <ListItemSecondaryAction>
-                <IconButton>
+                <IconButton onClick={() => done = !done }>
                     <CheckIcon />
                 </IconButton>
                 <IconButton 
