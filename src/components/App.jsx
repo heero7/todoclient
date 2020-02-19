@@ -1,10 +1,14 @@
 import React from 'react';
 
+import Container from "@material-ui/core/Container";
+
+import TodoList from './Todo/TodoList.jsx';
+
 function App() {
     return (
-        <div>
-            <h1>Todo App.</h1>
-        </div>
+        <Container maxWidth="sm">
+            <TodoList />
+        </Container>
     );
 }
 
