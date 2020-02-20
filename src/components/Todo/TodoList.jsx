@@ -34,6 +34,13 @@ function TodoList() {
         setTodos(todosCopy);
     };
 
+    const setTodoIsDone = (id, update) => {
+        let updatingTodos = [...todos];
+        let indexOfUpdate = updatingTodos.findIndex(t => t.id === id);
+        updatingTodos[indexOfUpdate].done = update;
+        setTodos(updatingTodos);
+    }
+
     return (
         <>
             <List>

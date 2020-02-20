@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import CheckIcon from '@material-ui/icons/Check';
@@ -14,21 +14,30 @@ function TodoText() {
 
 function Todo(props) {
     let { id, name, done } = props.todo;
+
+    const [isDone, setIsDone] = useState(false);
+
+    const toggle = () => {
+        setIsDone(!isDone);
+    };
+
     const strikethrough = {
-        textDecorationLine: 'line-through'
+        textDecoration: 'line-through'
     };
     return (
         <ListItem>
-            {done ? 
+            {isDone ? 
                 <ListItem
                     disableTypography
                     style={strikethrough}>
-                        {name}
+                        <ListItemText>{name}</ListItemText>
                 </ListItem> :
-                <ListItem>{name}</ListItem>
+                <ListItem>
+                    <ListItemText>{name}</ListItemText>
+                </ListItem>
             }
             <ListItemSecondaryAction>
-                <IconButton onClick={() => done = !done }>
+                <IconButton onClick={toggle}>
                     <CheckIcon />
                 </IconButton>
                 <IconButton 
