@@ -27,14 +27,8 @@ function Todo(props) {
     return (
         <ListItem>
             {isDone ? 
-                <ListItem
-                    disableTypography
-                    style={strikethrough}>
-                        <ListItemText>{name}</ListItemText>
-                </ListItem> :
-                <ListItem>
+                        <ListItemText>{name}</ListItemText>:
                     <ListItemText>{name}</ListItemText>
-                </ListItem>
             }
             <ListItemSecondaryAction>
                 <IconButton onClick={toggle}>

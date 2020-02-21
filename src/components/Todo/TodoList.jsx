@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import TodoAddForm from './TodoAddForm';
 import { List, ListItem, ListItemText } from '@material-ui/core';
 import Todo from './Todo';
+import { useEffect } from 'react';
 
 const renderTodos = (todos, removeFn) => {
     if (todos && Array.isArray(todos) && todos.length > 0) {
-        return todos.map((todo, index) => 
-        <Todo 
-            key={index} 
-            todo={todo}
-            removeOnClick={removeFn} />);
+        return todos.map((todo, index) =>
+            <Todo
+                key={index}
+                todo={todo}
+                removeOnClick={removeFn} />);
     } else {
         return (
             <ListItem>
@@ -24,6 +25,16 @@ const renderTodos = (todos, removeFn) => {
 function TodoList() {
     // Set the todos.
     const [todos, setTodos] = useState([]);
+
+    useEffect(() => {
+        // Load the todos from the api. 
+        // ! This should not be final. 
+        fetch('http://localhost:4000/todo', { mode: 'cors', headers: { 'Access-Control-Allow-Origin': '*' } })
+            .then(res => res.json())
+            .then(result => {
+                setTodos(result);
+            });
+    }, []);
 
     const addTodo = item => {
         setTodos([...todos, item]);
